@@ -51,10 +51,61 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 7.	Open the file of the program  and verify the error , clear if any errors that are existing 
 8.	Upload the program and check for the physical working. 
 9.	Ensure safety before powering up the device 
-10.	Plot the graph for the output voltage vs the resistance 
+10.	Plot the graph for the output voltage vs the resistance
+
+
+![image](https://github.com/suriyaraj23014049/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/151116233/818164b9-da79-477b-bdd0-c0de4d3bfcdc)
+
+![image](https://github.com/suriyaraj23014049/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/151116233/a6c300fb-a334-4091-a2fe-d8dd50bbf5f1)
+
+
 
 
 ### PROGRAM 
+
+```
+const int trigerpin=10;
+const int echopin=9;
+int red=7,green=6;
+long duration;
+float distance;
+void setup()
+{
+  pinMode(trigerpin, OUTPUT);
+  pinMode(echopin, INPUT);
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  Serial.begin(9600);
+
+}
+
+void loop()
+{
+  digitalWrite (trigerpin,LOW);
+  delay(20);
+  digitalWrite (trigerpin,HIGH);
+  delay(20);
+  digitalWrite (trigerpin,LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance =duration*0.034/2;
+  Serial.print(distance);
+  Serial.println("cms");
+  if(distance>5)
+  {
+    digitalWrite(red,HIGH);
+    delay(200);
+    digitalWrite(red,LOW);
+    delay(200);
+  }
+  else
+  {
+    digitalWrite(green,HIGH);
+    delay(200);
+    digitalWrite(green,LOW);
+    delay(200);
+  }
+}
+```
 
 
 
@@ -63,13 +114,16 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### Distance vs measurement table 
 
+![Screenshot 2024-03-07 111930](https://github.com/suriyaraj23014049/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/151116233/6d475d8b-5404-442f-b416-51f294c3c18b)
+
+
+
 			
  
 			
 			
 			
 
-![image](https://user-images.githubusercontent.com/36288975/190135379-52ebacd5-ccd5-460f-a4cd-4d0ad1d9b179.png)
 
 			
 			
